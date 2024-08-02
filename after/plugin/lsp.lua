@@ -21,7 +21,7 @@ require('mason-lspconfig').setup({
 })
 
 -- Delete Usings on CS files
-vim.api.nvim_create_autocmd("LspAttach", {
+--[[ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function (args)
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
     vim.api.nvim_create_autocmd("BufWritePre", {
@@ -39,6 +39,25 @@ vim.api.nvim_create_autocmd("LspAttach", {
       end,
     })
   end
-})
+}) ]]
 
-require'luasnip'.filetype_extend("vue", {"typescript", "vuedoc"})
+require 'luasnip'.filetype_extend("vue", { "typescript", "vuedoc" })
+
+require'lspconfig'.volar.setup{}
+
+require'lspconfig'.tsserver.setup{
+  init_options = {
+    plugins = {
+      {
+        name = "@vue/typescript-plugin",
+        location = "/usr/lib/node_modules/@vue/typescript-plugin",
+        languages = {"javascript", "typescript", "vue"},
+      },
+    },
+  },
+  filetypes = {
+    "javascript",
+    "typescript",
+    "vue",
+  },
+}

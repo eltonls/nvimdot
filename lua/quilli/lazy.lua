@@ -109,7 +109,7 @@ local plugins = {
       "Tastyep/structlog.nvim",  -- Optional, but highly recommended for debugging
     },
     config = function()
-      require("mason").setup()   -- Mason setup must run before csharp
+      require("mason").setup() -- Mason setup must run before csharp
       require("csharp").setup()
     end
   },
@@ -121,6 +121,100 @@ local plugins = {
       -- add any options here
     }
   },
+
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' }
+  },
+
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*", -- recommended, use latest release instead of latest commit
+    lazy = true,
+    ft = "markdown",
+    -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+    -- event = {
+    --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+    --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
+    --   "BufReadPre path/to/my-vault/**.md",
+    --   "BufNewFile path/to/my-vault/**.md",
+    -- },
+    dependencies = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+
+      -- see below for full list of optional dependencies 👇
+    },
+    opts = {
+      workspaces = {
+        {
+          name = "study",
+          path = "~/MEGA/Obsidian/Knowledge Vault 2",
+        },
+      },
+    },
+  },
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+  {
+     "m4xshen/hardtime.nvim",
+     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+     opts = {}
+  },
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "VeryLazy",
+    config = function()
+        vim.diagnostic.config({ virtual_text = false })
+        require('tiny-inline-diagnostic').setup()
+    end
+  },
+  {
+    "lewis6991/gitsigns.nvim"
+  },
+
+  {
+    "rcarriga/nvim-notify",
+    config = function ()
+      require("notify")
+    end
+  },
+  {
+    "j-hui/fidget.nvim",
+    opts = {
+      -- options
+    },
+  },
+  {
+    "tris203/precognition.nvim",
+    event = "VeryLazy",
+    opts = {
+    -- startVisible = true,
+    -- showBlankVirtLine = true,
+    -- highlightColor = { link = "Comment" },
+    -- hints = {
+    --      Caret = { text = "^", prio = 2 },
+    --      Dollar = { text = "$", prio = 1 },
+    --      MatchingPair = { text = "%", prio = 5 },
+    --      Zero = { text = "0", prio = 1 },
+    --      w = { text = "w", prio = 10 },
+    --      b = { text = "b", prio = 9 },
+    --      e = { text = "e", prio = 8 },
+    --      W = { text = "W", prio = 7 },
+    --      B = { text = "B", prio = 6 },
+    --      E = { text = "E", prio = 5 },
+    -- },
+    -- gutterHints = {
+    --     G = { text = "G", prio = 10 },
+    --     gg = { text = "gg", prio = 9 },
+    --     PrevParagraph = { text = "{", prio = 8 },
+    --     NextParagraph = { text = "}", prio = 8 },
+    -- },
+    -- disabled_fts = {
+    --     "startify",
+    -- },
+    },
+  },
+  { 'nvim-focus/focus.nvim', version = '*' },
 }
 
 require("lazy").setup(plugins)

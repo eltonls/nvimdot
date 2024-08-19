@@ -12,18 +12,15 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-  -- Colorscheme
+
   {
-    "nyoom-engineering/oxocarbon.nvim",
+    'AlexvZyl/nordic.nvim',
+    lazy = false,
+    priority = 1000,
     config = function()
-      require 'oxocarbon'
-      vim.opt.background = "dark" -- set this to dark or light
-      vim.cmd("colorscheme oxocarbon")
-      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+        require 'nordic' .load()
     end
   },
-
   -- LSP
   --- Uncomment the two plugins below if you want to manage the language servers from neovim
   { 'williamboman/mason.nvim' },

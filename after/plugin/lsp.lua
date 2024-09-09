@@ -43,15 +43,15 @@ require('mason-lspconfig').setup({
 
 require 'luasnip'.filetype_extend("vue", { "typescript", "vuedoc" })
 
-require'lspconfig'.volar.setup{}
+require 'lspconfig'.volar.setup {}
 
-require'lspconfig'.tsserver.setup{
+require 'lspconfig'.tsserver.setup {
   init_options = {
     plugins = {
       {
         name = "@vue/typescript-plugin",
         location = "/usr/lib/node_modules/@vue/typescript-plugin",
-        languages = {"javascript", "typescript", "vue"},
+        languages = { "javascript", "typescript", "vue" },
       },
     },
   },
@@ -59,5 +59,31 @@ require'lspconfig'.tsserver.setup{
     "javascript",
     "typescript",
     "vue",
+    "tsx",
+    "typescriptreact"
   },
+  settings = {
+    typescript = {
+      inlayHints = {
+        includeInlayParameterNameHints = "literal",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = false,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+      },
+    },
+    javascript = {
+      inlayHints = {
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+      },
+    },
+  }
 }

@@ -60,18 +60,6 @@ local plugins = {
     cmd = "Trouble",
   },
   {
-    "Exafunction/codeium.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
-    },
-    config = function()
-      require("codeium").setup({
-      })
-    end
-  },
-
-  {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
     config = true
@@ -212,6 +200,20 @@ local plugins = {
     },
   },
   { 'nvim-focus/focus.nvim', version = '*' },
+  {
+    'stevearc/dressing.nvim',
+    opts = {},
+  },
+
+  {
+  "monkoose/neocodeium",
+  event = "VeryLazy",
+  },
+  { 'andweeb/presence.nvim' },
+  {
+    "aserowy/tmux.nvim",
+    config = function() return require("tmux").setup() end
+  },
 }
 
 require("lazy").setup(plugins)
